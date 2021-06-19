@@ -45,10 +45,12 @@ module.exports={
         }
    
     
-        // let olduser = await Patientregister.findOne({email:req.body.email});
-        // if(olduser!=null ||olduser.length==1){
-        //     return res.send({ Success: false, message: "email already exists" });
-        // }
+        let olduser = await Patientregister.findOne({email:req.body.email});
+        if(olduser!=null){
+            if(olduser.email==req.body.email){
+                return res.send({ Success: false, message: "email already exists" });
+            }
+        }
         let patientregister=Patientregister();
         patientregister._id=mongoose.Types.ObjectId();
         patientregister.patientname=req.body.patientname;

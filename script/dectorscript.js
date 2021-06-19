@@ -123,10 +123,12 @@ module.exports={
             });
         }
      
-        // let olduser = await Studentregister.findOne({email:req.body.email});
-        // if(olduser!=null ||olduser.length==1){
-        //     return res.send({ Success: false, message: "email already exists" });
-        // }
+        let olduser = await DoctorRegister.findOne({email:req.body.email});
+        if(olduser!=null){
+            if(olduser.email==req.body.email){
+                return res.send({ Success: false, message: "email already exists" });
+            }
+        }
         let doctorregister=DoctorRegister();
         doctorregister._id=mongoose.Types.ObjectId();
         doctorregister.doctorname=req.body.doctorname;

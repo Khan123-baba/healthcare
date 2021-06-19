@@ -19,12 +19,12 @@ module.exports={
         res.render('doctorRecord',{doctorregister});
         console.log(doctorregister);
     },
-    getdashboard: async function(req,res){
-        res.render('testing')
-    },
-    getdoctor: async function(req,res){
-        res.render('testing')
-    },
+    // getdashboard: async function(req,res){
+    //     res.render('testing')
+    // },
+    // getdoctor: async function(req,res){
+    //     res.render('testing')
+    // },
     // ------------------Patientregister----------
     getPatientregister : async function(req,res){
         let patientregister = await Patientregister.find({});
