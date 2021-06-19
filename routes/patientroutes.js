@@ -9,7 +9,7 @@ const postPatientitem=require('../script/patientscript');
 const storage=multer.diskStorage({
     destination:'uploads/',
     filename:function(req,file,cb){
-        cb(null,`${file.fieldname+file.originalname}_${Date.now()}${file.originalname}`);
+        cb(null,`${file.originalname}_${Date.now()}${file.originalname}`);
     }
 });
 const fileFilter=(req,file,cb)=>{
