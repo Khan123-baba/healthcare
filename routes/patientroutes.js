@@ -21,7 +21,7 @@ const fileFilter=(req,file,cb)=>{
     };
     const upload =multer({storage:storage,limits:{
         fileSize:1024*1024*5,
-    }, fileFilter:fileFilter});
+    }, });
 // ------------------patientregistration-----
 router.post('/patientregister',upload.single('patientimage'),(req,res)=>{
     postPatientitem.addpatientregister(req,res);
