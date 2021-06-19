@@ -37,7 +37,10 @@ mongoose.connection.on('error',err=>{
 });
 mongoose.Promise=global.Promise;
 
-
+app.get('/',(req,res)=>{
+      // res.redirect('/userRoutes/Teachersubject');
+      res.redirect('/doctorRouter/doctorregister');
+    });
 
 //   const PORT = process.env.PORT || 5000;
 
