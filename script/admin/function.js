@@ -20,10 +20,10 @@ module.exports={
         console.log(doctorregister);
     },
     getdashboard: async function(req,res){
-        res.render('dashboard')
+        res.render('testing')
     },
     getdoctor: async function(req,res){
-        res.render('getAlldoctor')
+        res.render('testing')
     },
     // ------------------Patientregister----------
     getPatientregister : async function(req,res){

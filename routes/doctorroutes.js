@@ -47,8 +47,8 @@ router.get('/alldoctorregistration',(req,res)=>{
 router.get('/dashboard',(req,res)=>{
     getDoctoritem.getdashboard(req,res);
 });
-router.get('/doctor',(req,res)=>{
-    getDoctoritem.getdoctor(req,res);
+router.get('/testing',(req,res)=>{
+    res.render('testing');
 });
 
 // ---------------doctor-login------------

@@ -9,6 +9,7 @@ var $           = require('jquery');
 const bodyparser= require('body-parser');
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
+app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use('/admin', express.static(__dirname + '/admin'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -16,7 +17,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use('/jquery',express.static(path.join(__dirname+'/node_modules/jquery/dist/')));  
 app.use(express.static(path.join(__dirname+'/public')));
 app.use(morgan('combined'));
-app.set('views', path.join(__dirname, 'views'));  
+// app.set('views', path.join(__dirname, 'views'));  
+// app.set('testingviews', path.join(__dirname, 'testingviews'));  
 // ---------------next pages routes-----------
 const doctorRouter=require('./routes/doctorroutes');
 const patientRouter=require('./routes/patientroutes');
@@ -39,7 +41,7 @@ mongoose.Promise=global.Promise;
 
 app.get('/',(req,res)=>{
       // res.redirect('/userRoutes/Teachersubject');
-      res.redirect('/doctorRouter/doctorregister');
+      res.redirect('/doctorRouter/testing');
     });
 
 //   const PORT = process.env.PORT || 5000;
