@@ -167,7 +167,7 @@ module.exports={
 getAllDoctor : async function(req,res){
         
     try {
-        let doctor=await DoctorRegister.find().populate('specilityname');
+        let doctor=await DoctorRegister.find();
         return res.status(200).json({
             "Success":true,
             "AllDoctors":doctor,
