@@ -37,12 +37,12 @@ module.exports={
                 "message":"please enter your age",
             });
         }
-        if(req.body.gender==undefined||req.body.gender==null){
-            return res.status(200).json({
-                "Success":false,
-                "message":"please enter your gender",
-            });
-        }
+        // if(req.body.gender==undefined||req.body.gender==null){
+        //     return res.status(200).json({
+        //         "Success":false,
+        //         "message":"please enter your gender",
+        //     });
+        // }
    
     
         let olduser = await Patientregister.findOne({email:req.body.email});
