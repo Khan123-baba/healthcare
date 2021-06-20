@@ -22,10 +22,10 @@ app.use(morgan('combined'));
 // ---------------next pages routes-----------
 const doctorRouter=require('./routes/doctorroutes');
 const patientRouter=require('./routes/patientroutes');
-
+const medicalstoreRouter=require('./routes/medicalshoperoutes');
 app.use('/doctorRouter',doctorRouter);
 app.use('/patientRouter',patientRouter);
-
+app.use('/medicalstoreRouter',medicalstoreRouter);
 
 // ----------------mongoose and mongodb-------
 const mongoose =require('mongoose');

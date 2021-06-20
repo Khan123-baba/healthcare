@@ -46,4 +46,5 @@ router.get('/sliderimage',(req,res)=>{
 router.get('/allsliderimage',(req,res)=>{
     postPatientitem.getAllsliderimage(req,res);
 });
+
 module.exports = router;

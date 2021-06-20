@@ -6,6 +6,7 @@ const Testlist=require('../../modules/testlist');
 const Healthtips=require('../../modules/healthtips');
 const Medicine=require('../../modules/medicine');
 const SliderImage=require('../../modules/imageslider');
+const MedicalStore=require('../../modules/medicienshope');
 module.exports={
     // --------------getDoctorspecility----
     getDoctorspecility :async function(req,res){
@@ -43,14 +44,22 @@ module.exports={
         res.render('#',{healthtips});
         console.log(healthtips);
     },
+    // ---------------get medicien-
     getMedicine: async function(req,res){
         let medicine = await Medicine.find({});
         res.render('#',{medicine});
         console.log(medicine);
     },
+    // -----------------slideri images------
     getsliderimage: async function(req,res){
         let slider= await SliderImage.find({});
         res.render('#',{slider});
         console.log(slider);
-    }
+    },
+    // ------------------MedicalStore-------------
+    getMedicalStore: async function(req,res){
+        let medicalstore= await MedicalStore.find({});
+        res.render('#',{medicalstore});
+        console.log(medicalstore);
+    },
 }
