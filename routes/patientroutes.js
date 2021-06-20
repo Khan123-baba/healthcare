@@ -36,4 +36,14 @@ router.get('/allPatientregistration',(req,res)=>{
 router.post('/patientlogin',(req,res)=>{
     postPatientitem.loginpatient(req,res);
 });
+// ------------------sliderimage----------
+router.post('/sliderimage',upload.single('sliderimage'),(req,res)=>{
+    postPatientitem.addsliderimage(req,res);
+});
+router.get('/sliderimage',(req,res)=>{
+    getPatientitem.getsliderimage(req,res);
+});
+router.get('/allsliderimage',(req,res)=>{
+    postPatientitem.getAllsliderimage(req,res);
+});
 module.exports = router;

@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const Patientregister=require('../modules/patientregistration');
+const SliderImage=require('../modules/imageslider');
 const saltRounds = 10;
 const bcrypt=require('bcryptjs');
 // const path=require('../uploads');
@@ -62,11 +63,11 @@ module.exports={
         patientregister.age=req.body.age;
         patientregister.gender=req.body.gender;
         patientregister.devicetoken=req.body.devicetoken;
-        patientregister.patientimage=req.file.path;
+       patientregister.patientimage=req.file.path;
         
         patientregister.save(async function (err, patientregister) {
             if(err){
-                console.log(err);
+                 console.log(err);
             }else{
                 res.status(200).json({
                     "Success":true,
@@ -133,5 +134,43 @@ loginpatient :async function(req,res){
       } else {
         return res.send({ Success: false, message: "User Not Found" });
       }
+},
+// -----------------------------slider-----------
+addsliderimage:async function(req,res){
+    // if(req.body.sliderimage==undefined||req.body.sliderimage==null){
+    //     return res.status(200).json({
+    //         "Success":false,
+    //         "message":"please enter your sliderimage",
+    //     });
+    // }
+    let sliderimage=SliderImage();
+    sliderimage._id=mongoose.Types.ObjectId();
+    sliderimage.sliderimage=req.file.path;
+    sliderimage.save(async function (err, sliderimage) {
+        if(err){
+             console.log(err);
+        }else{
+            res.status(200).json({
+                "Success":true,
+                "message":" Added Student sliderimage",
+
+                'sliderimage':sliderimage,
+             });
+            console.log(sliderimage);
+        }
+       });
+},
+getAllsliderimage : async function(req,res){
+        
+    try {
+        let slider=await SliderImage.find();
+        return res.status(200).json({
+            "Success":true,
+            "AllsliderImages":slider,
+        });
+    } 
+ catch (error) {
+    
+}
 },
 }

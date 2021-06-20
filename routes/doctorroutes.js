@@ -44,6 +44,7 @@ router.get('/doctorregister',(req,res)=>{
 router.get('/alldoctorregistration',(req,res)=>{
     postDoctoritem.getAllDoctor(res,res);
 });
+
 router.get('/dashboard',(req,res)=>{
     getDoctoritem.getdashboard(req,res);
 });

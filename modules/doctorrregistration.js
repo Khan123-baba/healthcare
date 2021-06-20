@@ -10,7 +10,7 @@ const mongoose=require('mongoose');
     votes:{type:String,required:true},    
     clinicfees:{type:String,required:true},
     days:{type:String,required:true},
-    TimeSlot:{type:String},
+    TimeSlot:[{type:String}],
     location:{type:String,required:true},
     verification: { type: String,required:true },
     review: { type: String,required:true},

@@ -5,6 +5,7 @@ const Patientregister=require('../../modules/patientregistration');
 const Testlist=require('../../modules/testlist');
 const Healthtips=require('../../modules/healthtips');
 const Medicine=require('../../modules/medicine');
+const SliderImage=require('../../modules/imageslider');
 module.exports={
     // --------------getDoctorspecility----
     getDoctorspecility :async function(req,res){
@@ -47,4 +48,9 @@ module.exports={
         res.render('#',{medicine});
         console.log(medicine);
     },
+    getsliderimage: async function(req,res){
+        let slider= await SliderImage.find({});
+        res.render('#',{slider});
+        console.log(slider);
+    }
 }
