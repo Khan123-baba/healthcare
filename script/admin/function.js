@@ -7,6 +7,7 @@ const Healthtips=require('../../modules/healthtips');
 const Medicine=require('../../modules/medicine');
 const SliderImage=require('../../modules/imageslider');
 const MedicalStore=require('../../modules/medicienshope');
+const Doctorappiontment=require('../../modules/doctorappiontment');
 module.exports={
     // --------------getDoctorspecility----
     getDoctorspecility :async function(req,res){
@@ -62,4 +63,10 @@ module.exports={
         res.render('#',{medicalstore});
         console.log(medicalstore);
     },
+// --------------Doctorappiontment---------------
+getDoctorappiontment:async function(req,res){
+    let doctorappiontment= await Doctorappiontment.find({});
+    res.render("#",{doctorappiontment});
+    console.log(doctorappiontment);
+}
 }

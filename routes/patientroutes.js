@@ -46,5 +46,14 @@ router.get('/sliderimage',(req,res)=>{
 router.get('/allsliderimage',(req,res)=>{
     postPatientitem.getAllsliderimage(req,res);
 });
-
+// ------------------------Doctor appointment-------------
+router.post('/doctorappointment',(req,res)=>{
+    postPatientitem.addDoctorAppointment(req,res);
+});
+router.get('/doctorappointment',(req,res)=>{
+    getPatientitem.getDoctorappiontment(req,res);
+});
+router.get('/allDoctorappiontment',(req,res)=>{
+    postPatientitem.getAllDoctorappointment(req,res);
+});
 module.exports = router;

@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 const Patientregister=require('../modules/patientregistration');
 const SliderImage=require('../modules/imageslider');
+const Doctorappiontment=require('../modules/doctorappiontment');
 const saltRounds = 10;
 const bcrypt=require('bcryptjs');
 // const path=require('../uploads');
@@ -167,6 +168,83 @@ getAllsliderimage : async function(req,res){
         return res.status(200).json({
             "Success":true,
             "AllsliderImages":slider,
+        });
+    } 
+ catch (error) {
+    
+}
+},
+// ----------------------------doctor Appointment------------
+// addDoctorAppointment:async function(req,res){
+//     if(req.body.location==undefined||req.body.location==null){
+//         return res.status(200).json({
+//             "Success":false,
+//             "message":"please enter your specilityname",
+//         });
+//     }
+//     let appointment=Doctorappiontment();
+//     appointment._id=mongoose.Types.ObjectId();
+//     appointment.location=req.body.location;
+//     try {
+//         // let subjectnotification=await SubjectNotification.find();
+//         let appointment = await Doctorappiontment.find({}).populate('Patientregister').populate('DoctorRegister');
+//         return appointment.save(async function (err, appointment) {
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 res.status(200).json({
+//                     "Success":true,
+//                     "message":" Added appointment Successfully",
+    
+//                     'appointment':appointment,
+//                  });
+//                 console.log(appointment);
+//             }
+//            });     
+//     } 
+//  catch (error) {
+    
+// }
+
+// },
+addDoctorAppointment:async function(req,res){
+        if(req.body.patientid==undefined||req.body.patientid==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your patientid",
+            });
+        }
+        if(req.body.doctorid==undefined||req.body.doctorid==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your doctorid",
+            });
+        }
+        let appointment=Doctorappiontment();
+        appointment._id=mongoose.Types.ObjectId();
+        appointment.patientid=req.body.patientid;
+        appointment.doctorid=req.body.doctorid;
+        appointment.save(async function (err, appointment) {
+            if(err){
+                 console.log(err);
+            }else{
+                res.status(200).json({
+                    "Success":true,
+                    "message":" Added Doctor appointment",
+
+                    'DoctorAppointment':appointment,
+                 });
+                console.log(appointment);
+            }
+           });       
+    },
+getAllDoctorappointment : async function(req,res){
+    
+    try {
+        let appointment=await Doctorappiontment.find();
+        return res.status(200).json({
+            "Success":true,
+            "DoctorAppointment":appointment,
         });
     } 
  catch (error) {
