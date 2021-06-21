@@ -1,11 +1,11 @@
 const mongoose=require('mongoose');
-// const Patientregister=require('./patientregistration');
-// const DoctorRegister=require('./doctorrregistration')
+// const Patientregistration = require('./patientregistration');
+// const Doctorrregistration = require('./doctorrregistration');
 
 const doctorappiontment=mongoose.Schema({
     _id:mongoose.Types.ObjectId,
-    patientid:{type:String,required:true},
-    doctorid:{type:String,required:true}
+    patientid:{type:String,ref:'Patientregister'},
+    doctorid:{type:String,ref:'DoctorRegister'}
     // patientname:{type:String,ref:Patientregister},
     // email:{type:String,ref:Patientregister},
     // phoneno:{type:String,ref:Patientregister}, 

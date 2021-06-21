@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 const Patientregister=require('../modules/patientregistration');
 const SliderImage=require('../modules/imageslider');
 const Doctorappiontment=require('../modules/doctorappiontment');
+const Doctorrregistration=require('../modules/doctorrregistration')
 const saltRounds = 10;
 const bcrypt=require('bcryptjs');
 // const path=require('../uploads');
@@ -241,7 +242,7 @@ addDoctorAppointment:async function(req,res){
 getAllDoctorappointment : async function(req,res){
     
     try {
-        let appointment=await Doctorappiontment.find();
+        let appointment=await Doctorappiontment.find().populate('patientid').populate('doctorid');
         return res.status(200).json({
             "Success":true,
             "DoctorAppointment":appointment,
