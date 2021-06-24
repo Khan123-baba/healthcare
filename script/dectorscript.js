@@ -362,4 +362,74 @@ catch (error) {
 
 }
 },
+// --------------------change doctor name---------------
+changedoctorname :async function(req,res){
+    try {
+        // let id=req.body._id;
+        // let doctorname=req.params.doctorname;
+        // let option={new:true};
+
+        let changename=await DoctorRegister.findByIdAndUpdate({_id:req.body._id},{doctorname:req.body.doctorname},  { new: true } );
+        return res.status(200).json({
+            "success":true,
+            "DocterUpdateName":changename,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+},
+getDoctorAfterNameChange: async function(req,res){
+    try {
+        let afterchange=await DoctorRegister.findById({_id:req.body._id});
+        return res.status(200).json({
+            "success":true,
+            "DocterAfterNameChange":afterchange
+        }) ;
+    } catch (error) {
+        console.log(error);
+    }
+},
+// ---------------------update doctor password---------
+changeDoctorPassword: async function (req, res) {
+    if (req.body._id != undefined && req.body._id != null) {
+        if (!req.body.currentPassword) {
+            return res.send({ 'Success': false, 'message': "Current Password is required." })
+        }
+        if (!req.body.newPassword) {
+            return res.send({ 'Success': false, 'message': "New Password is required." })
+        }
+        if (!req.body.confirmPassword) {
+            return res.send({ 'Success': false, 'message': "Confirm Password is required." })
+        }
+        if (req.body.newPassword != req.body.confirmPassword) {
+            return res.send({ 'Success': false, 'message': "Password did not match." })
+        }
+
+        let foundUser = await DoctorRegister.findOne({ _id: req.body._id });
+        if (foundUser != null && foundUser != "") {
+            const match = await bcrypt.compare(req.body.currentPassword, foundUser.password);
+            if (match) {
+                let salt = bcrypt.genSaltSync(saltRounds);
+                let hash = bcrypt.hashSync(req.body.newPassword, salt);
+                foundUser.password = hash;
+                foundUser.save(async function (err, savedUser) {
+                    if (err) {
+                        res.send({ "Success": false, "message": err })
+                    }
+                    else {
+                        res.send({ "Success": true, "message": "Password changed successfully","DoctorPasswordUpdate":foundUser })
+                    }
+                })
+            }
+            else {
+                return res.send({ 'Success': false, 'message': "Current Password is Incorrect." })
+            }
+        }
+    }
+    // else {
+    //     res.redirect('/quick-swapper/admin');
+    // }
+
+},
+
 }

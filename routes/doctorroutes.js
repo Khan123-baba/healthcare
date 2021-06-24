@@ -86,4 +86,15 @@ router.get('/medicine',(req,res)=>{
 router.get('/allmedicine',(req,res)=>{
     postDoctoritem.getAllMedicine(req,res);
 });
+// ----------------------change doctor name----------
+router.post('/changedoctorname',(req,res)=>{
+    postDoctoritem.changedoctorname(req,res);
+});
+router.get('/afterchangedoctorname',(req,res)=>{
+    postDoctoritem.getDoctorAfterNameChange(req,res);
+});
+// -----------------changeDoctorPassword------------
+router.post('/changeDoctorPassword',(req,res)=>{
+    postDoctoritem.changeDoctorPassword(req,res);
+});
 module.exports=router;

@@ -30,7 +30,7 @@ app.use('/medicalstoreRouter',medicalstoreRouter);
 // ----------------mongoose and mongodb-------
 const mongoose =require('mongoose');
 mongoose.connect("mongodb+srv://healthcare:1122@healthcare.wwajq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
- { useNewUrlParser: true, useUnifiedTopology: true });
+ { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false });
 mongoose.connection.on('connected',()=>{
     console.log("connected to mongoodb database");
 });
