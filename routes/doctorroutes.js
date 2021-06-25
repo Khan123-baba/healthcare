@@ -90,11 +90,19 @@ router.get('/allmedicine',(req,res)=>{
 router.post('/changedoctorname',(req,res)=>{
     postDoctoritem.changedoctorname(req,res);
 });
-router.get('/afterchangedoctorname',(req,res)=>{
-    postDoctoritem.getDoctorAfterNameChange(req,res);
-});
+// router.get('/afterchangedoctorname',(req,res)=>{
+//     postDoctoritem.getDoctorAfterNameChange(req,res);
+// });
 // -----------------changeDoctorPassword------------
 router.post('/changeDoctorPassword',(req,res)=>{
     postDoctoritem.changeDoctorPassword(req,res);
+});
+// ---------------change Email---------
+router.post('/changeDoctorEmail',(req,res)=>{
+    postDoctoritem.changeDoctorEmail(req,res);
+});
+// -----------------get doctor by specility id-----------
+router.post('/getDoctorBySpeclilityId/:specilityId',(req,res)=>{
+    postDoctoritem.getDoctorySpecilityId(req,res);
 });
 module.exports=router;

@@ -67,12 +67,7 @@ module.exports={
                 "message":"please enter your password",
             });
         }
-        // if(req.body.specilityname==undefined||req.body.specilityname==null){
-        //     return res.status(200).json({
-        //         "Success":false,
-        //         "message":"please enter your specilityname",
-        //     });
-        // }
+        
         if(req.body.experience==undefined||req.body.experience==null){
             return res.status(200).json({
                 "Success":false,
@@ -136,7 +131,7 @@ module.exports={
         let salt = bcrypt.genSaltSync(saltRounds);
         let hash = bcrypt.hashSync(req.body.password, salt);
         doctorregister.password=hash;
-        doctorregister.specilityname=req.body.specilityname;
+        doctorregister.specilityId=req.body.specilityId;
         doctorregister.experience=req.body.experience;
         doctorregister.votes=req.body.votes;
         doctorregister.clinicfees=req.body.clinicfees;
@@ -378,17 +373,17 @@ changedoctorname :async function(req,res){
         console.log(error);
     }
 },
-getDoctorAfterNameChange: async function(req,res){
-    try {
-        let afterchange=await DoctorRegister.findById({_id:req.body._id});
-        return res.status(200).json({
-            "success":true,
-            "DocterAfterNameChange":afterchange
-        }) ;
-    } catch (error) {
-        console.log(error);
-    }
-},
+// getDoctorAfterNameChange: async function(req,res){
+//     try {
+//         let afterchange=await DoctorRegister.findById({_id:req.body._id});
+//         return res.status(200).json({
+//             "success":true,
+//             "DocterAfterNameChange":afterchange
+//         }) ;
+//     } catch (error) {
+//         console.log(error);
+//     }
+// },
 // ---------------------update doctor password---------
 changeDoctorPassword: async function (req, res) {
     if (req.body._id != undefined && req.body._id != null) {
@@ -431,5 +426,34 @@ changeDoctorPassword: async function (req, res) {
     // }
 
 },
+// --------------------change doctor email-------------
+changeDoctorEmail: async function(req,res){
+    try {
+        let changeemail=await DoctorRegister.findByIdAndUpdate({_id:req.body._id},{email:req.body.email},  { new: true } );
+        return res.status(200).json({
+            "success":true,
+            "DocterUpdateEmail":changeemail,
+        });
+    } catch (error) {
+        
+    }
+},
+// -------------get doctor by specility---
+getDoctorySpecilityId :async function(req,res){
+try {
+    // let specilityId=req.body.specilityId;
+    // var o_id = new ObjectId(id);
+
+    let finddoctor= await DoctorRegister.find({specilityId : req.params.specilityId});
+    return res.status(200).json({
+        "success":true,
+        "GetDoctorBySpecilityId":finddoctor,
+        
+    });
+} catch (error) {
+    console.log(error);
+}
+},
+
 
 }
