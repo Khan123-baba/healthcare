@@ -15,6 +15,9 @@ const mongoose=require('mongoose');
     verification: { type: String,required:true },
     review: { type: String,required:true},
     devicetoken:{type:String},
+    lat:{type:String,required:true},
+    log:{type:String,required:true},
+    discription:{type:String,required:true},
     doctorimage:{type:String,required:true},
 
     

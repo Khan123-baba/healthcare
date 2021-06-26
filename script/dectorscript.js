@@ -117,6 +117,24 @@ module.exports={
                 "message":"please enter your review",
             });
         }
+        if(req.body.lat==undefined||req.body.lat==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your lat",
+            });
+        }
+        if(req.body.log==undefined||req.body.log==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your log",
+            });
+        }
+        if(req.body.discription==undefined||req.body.discription==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your discription",
+            });
+        }
      
         let olduser = await DoctorRegister.findOne({email:req.body.email});
         if(olduser!=null){
@@ -140,6 +158,9 @@ module.exports={
         doctorregister.location=req.body.location;
         doctorregister.verification=req.body.verification;
         doctorregister.review=req.body.review;
+        doctorregister.lat=req.body.lat;
+        doctorregister.log=req.body.log;
+        doctorregister.discription=req.body.discription;
         doctorregister.devicetoken=req.body.devicetoken;
         doctorregister.doctorimage=req.file.path;
 
@@ -150,7 +171,7 @@ module.exports={
             }else{
                 res.status(200).json({
                     "Success":true,
-                    "message":" Added Student Successfully",
+                    "message":" Added Doctor Successfully",
 
                     'Doctor':doctorregister,
                  });
