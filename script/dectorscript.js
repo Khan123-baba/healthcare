@@ -135,6 +135,12 @@ module.exports={
                 "message":"please enter your discription",
             });
         }
+        if(req.body.phoneno==undefined||req.body.phoneno==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your phoneno",
+            });
+        }
      
         let olduser = await DoctorRegister.findOne({email:req.body.email});
         if(olduser!=null){
@@ -161,6 +167,7 @@ module.exports={
         doctorregister.lat=req.body.lat;
         doctorregister.log=req.body.log;
         doctorregister.discription=req.body.discription;
+        doctorregister.phoneno=req.body.phoneno;
         doctorregister.devicetoken=req.body.devicetoken;
         doctorregister.doctorimage=req.file.path;
 

@@ -18,6 +18,7 @@ const mongoose=require('mongoose');
     lat:{type:String,required:true},
     log:{type:String,required:true},
     discription:{type:String,required:true},
+    phoneno:{type:String,required:true},
     doctorimage:{type:String,required:true},
 
     
