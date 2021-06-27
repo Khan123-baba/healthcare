@@ -9,7 +9,7 @@ const mongoose=require('mongoose');
     experience:{type:String, required:true},
     votes:{type:String,required:true},    
     clinicfees:{type:String,required:true},
-    days:[{type:String,required:true}],
+    days:[{type:String,required:true,}],
     TimeSlot:[{type:String}],
     location:{type:String,required:true},
     verification: { type: String,required:true },
@@ -19,7 +19,7 @@ const mongoose=require('mongoose');
     log:{type:String,required:true},
     discription:{type:String,required:true},
     phoneno:{type:String,required:true},
-    doctorimage:{type:String,required:true},
+    // doctorimage:{type:String,required:true},
 
     
     

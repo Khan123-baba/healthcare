@@ -87,12 +87,12 @@ module.exports={
                 "message":"please enter your clinicfees",
             });
         }
-        if(req.body.days==undefined||req.body.days==null){
-            return res.status(200).json({
-                "Success":false,
-                "message":"please enter your days",
-            });
-        }
+        // if(req.body.days==undefined||req.body.days==null){
+        //     return res.status(200).json({
+        //         "Success":false,
+        //         "message":"please enter your days",
+        //     });
+        // }
         // if(req.body.TimeSlot==undefined||req.body.TimeSlot==null){
         //     return res.status(200).json({
         //         "Success":false,
@@ -169,7 +169,7 @@ module.exports={
         doctorregister.discription=req.body.discription;
         doctorregister.phoneno=req.body.phoneno;
         doctorregister.devicetoken=req.body.devicetoken;
-        doctorregister.doctorimage=req.file.path;
+        // doctorregister.doctorimage=req.file.path;
 
         
         doctorregister.save(async function (err, doctorregister) {
