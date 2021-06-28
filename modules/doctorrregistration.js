@@ -19,7 +19,7 @@ const mongoose=require('mongoose');
     log:{type:String,required:true},
     discription:{type:String,required:true},
     phoneno:{type:String,required:true},
-    // doctorimage:{type:String,required:true},
+    doctorimage:{type:String,required:true},
 
     
     

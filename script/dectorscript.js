@@ -169,7 +169,7 @@ module.exports={
         doctorregister.discription=req.body.discription;
         doctorregister.phoneno=req.body.phoneno;
         doctorregister.devicetoken=req.body.devicetoken;
-        // doctorregister.doctorimage=req.file.path;
+        doctorregister.doctorimage=req.file.path;
 
         
         doctorregister.save(async function (err, doctorregister) {
