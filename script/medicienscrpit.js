@@ -1,5 +1,6 @@
 const mongoose=require('mongoose');
 const MedicalStore=require('../modules/medicienshope');
+const Mediciencard=require('../modules/mediciencard');
 const saltRounds = 10;
 const bcrypt=require('bcryptjs');
 // const path=require('../uploads');
@@ -133,5 +134,65 @@ loginmedicalstore :async function(req,res){
       } else {
         return res.send({ Success: false, message: "User Not Found" });
       }
+},
+// ==========================Mediciencard===========
+addmediciencard:async function(req,res){
+    if(req.body.medicienid==undefined||req.body.medicienid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your medicienid",
+        });
+    }
+    if(req.body.userid==undefined||req.body.userid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your userid",
+        });
+    }
+    if(req.body.medicienstoreid==undefined||req.body.medicienstoreid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your medicienstoreid",
+        });
+    }
+    // if(req.body.getid==undefined||req.body.getid==null){
+    //     return res.status(200).json({
+    //         "Success":false,
+    //         "message":"please enter your getid",
+    //     });
+    // }
+    let mediciencard=Mediciencard();
+    mediciencard._id=mongoose.Types.ObjectId();
+    mediciencard.medicienid=req.body.medicienid;
+    mediciencard.userid=req.body.userid;
+    mediciencard.medicienstoreid=req.body.medicienstoreid;
+    mediciencard.getid=req.body.userid;
+   
+    mediciencard.save(async function (err, mediciencard) {
+        if(err){
+             console.log(err);
+        }else{
+            res.status(200).json({
+                "Success":true,
+                "message":" Added Medicien card",
+
+                'Mediciencard':mediciencard,
+             });
+            console.log(mediciencard);
+        }
+       });       
+},
+getAllMediciencard : async function(req,res){
+
+try {
+    let mediciencard=await Mediciencard.find({getid:req.params.getid}).populate('medicienid').populate('userid').populate('medicienstoreid');
+    return res.status(200).json({
+        "Success":true,
+        "Mediciencard":mediciencard,
+    });
+} 
+catch (error) {
+
+}
 },
 }   

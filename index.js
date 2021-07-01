@@ -1,53 +1,92 @@
-const express =require('express');
-const app= express();
-const path= require('path');
-const morgan = require('morgan');
-var $           = require('jquery');  
-    
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
+const bodyparser=require("body-parser");
+const path = require('path');
+const bcrypt = require('bcryptjs');
+// let admin= require('firebase-admin');
+// let serviceAccount = require("./sarhaduni-6da25-firebase-adminsdk-488kj-57d8ec31f6.json");
+const app = express();
 
-// ---------------bodyparser-------------
-const bodyparser= require('body-parser');
-app.use(bodyparser.urlencoded({extended:false}));
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://quickswapper-default-rtdb.firebaseio.com"
+// });
+    //  bodyparser
+app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
+
+// Passport Config
+require('./config/passport')(passport);
+
+// DB Config
+const db = require('./config/keys').mongoURI;
+
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true ,useUnifiedTopology: true}
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+
+// EJS
+app.use(expressLayouts);
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
-app.use('/admin', express.static(__dirname + '/admin'));
+// app.use('/admin', express.static(__dirname + '/admin'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 //set the path of the jquery file to be used from the node_module jquery package  
-app.use('/jquery',express.static(path.join(__dirname+'/node_modules/jquery/dist/')));  
+// app.use('/jquery',express.static(path.join(__dirname+'/node_modules/jquery/dist/')));  
 app.use(express.static(path.join(__dirname+'/public')));
-app.use(morgan('combined'));
-// app.set('views', path.join(__dirname, 'views'));  
-// app.set('testingviews', path.join(__dirname, 'testingviews'));  
-// ---------------next pages routes-----------
-const doctorRouter=require('./routes/doctorroutes');
-const patientRouter=require('./routes/patientroutes');
-const medicalstoreRouter=require('./routes/medicalshoperoutes');
-app.use('/doctorRouter',doctorRouter);
-app.use('/patientRouter',patientRouter);
-app.use('/medicalstoreRouter',medicalstoreRouter);
+// app.use(morgan('combined'));
 
-// ----------------mongoose and mongodb-------
-const mongoose =require('mongoose');
-mongoose.connect("mongodb+srv://healthcare:1122@healthcare.wwajq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
- { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false });
-mongoose.connection.on('connected',()=>{
-    console.log("connected to mongoodb database");
+// Express body parser
+app.use(express.urlencoded({ extended: true }));
+
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect flash
+app.use(flash());
+
+// Global variables
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
 });
-mongoose.connection.on('error',err=>{
-    console.log("Error at mongoDB",err);
-});
-mongoose.Promise=global.Promise;
 
-app.get('/',(req,res)=>{
-      // res.redirect('/userRoutes/Teachersubject');
-      res.redirect('/doctorRouter/testing');
-    });
+// Routes
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
 
-//   const PORT = process.env.PORT || 5000;
+app.use('/doctorRouter',require('./routes/doctorroutes'));
+app.use('/patientRouter',require('./routes/patientroutes'));
+app.use('/medicalstoreRouter',require('./routes/medicalshoperoutes'));
+// app.use('/notification',require('./routes/notification'));
+// app.use('/TeacherRoutes',require('./routes/teacherroutes'));
 
-//   app.listen(PORT, console.log(`Server running on  ${PORT}`));
+// app.get('/',(req,res)=>{
+//   // res.redirect('/userRoutes/Teachersubject');
+//   res.redirect('/adminRoutes/Admin');
+// });
 
-// module.exports=app;
-const PORT=process.env.PORT||3000;
-app.listen(PORT);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log(`Server running on  ${PORT}`));

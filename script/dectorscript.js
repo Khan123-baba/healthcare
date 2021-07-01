@@ -87,12 +87,15 @@ module.exports={
                 "message":"please enter your clinicfees",
             });
         }
-        // if(req.body.days==undefined||req.body.days==null){
-        //     return res.status(200).json({
-        //         "Success":false,
-        //         "message":"please enter your days",
-        //     });
-        // }
+       
+            
+                // return res.status(200).json({
+                //     "Success":false,
+                //     "message":"please enter your days",
+                // });
+            
+            
+        
         // if(req.body.TimeSlot==undefined||req.body.TimeSlot==null){
         //     return res.status(200).json({
         //         "Success":false,
@@ -148,6 +151,21 @@ module.exports={
                 return res.send({ Success: false, message: "email already exists" });
             }
         }
+        // if(req.body.days!=null||req.body.days!=undefined){
+        //     var daysArray= new Array();
+        // //    let doctordays= await DoctorRegister.find({});
+
+        //     var req=req.body.days;
+        //     if (Array.isArray(req)) {
+        //         for(const keydays of req ){
+        //             let dayss= new DoctorRegister();
+        //             dayss.days=keydays.days;
+        //             let newkeydays=await dayss.save();
+        //             await daysArray.push(newkeydays);
+        //         }
+                
+        //    }   }
+     
         let doctorregister=DoctorRegister();
         doctorregister._id=mongoose.Types.ObjectId();
         doctorregister.doctorname=req.body.doctorname;
@@ -159,7 +177,11 @@ module.exports={
         doctorregister.experience=req.body.experience;
         doctorregister.votes=req.body.votes;
         doctorregister.clinicfees=req.body.clinicfees;
+        var doctordays=[];
+        doctordays.push(req.body.days);
         doctorregister.days=req.body.days;
+        var doctortime=[];
+        doctortime.push(req.body.TimeSlot);
         doctorregister.TimeSlot=req.body.TimeSlot;
         doctorregister.location=req.body.location;
         doctorregister.verification=req.body.verification;
@@ -356,7 +378,7 @@ addmedicine:async function(req,res){
     medicine.price=req.body.price;
     medicine.discription=req.body.discription;
     medicine.medicineimage=req.file.path;
-    
+    medicine.medicalstoreid=req.body.medicalstoreid;
     medicine.save(async function (err, medicine) {
         if(err){
             console.log(err);
@@ -375,7 +397,7 @@ addmedicine:async function(req,res){
 getAllMedicine : async function(req,res){
     
 try {
-    let medicine=await Medicine.find();
+    let medicine=await Medicine.find({medicalstoreid:req.params.medicalstoreid});
     return res.status(200).json({
         "Success":true,
         "AllMedicine":medicine,

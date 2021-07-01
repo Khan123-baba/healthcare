@@ -36,4 +36,11 @@ const fileFilter=(req,file,cb)=>{
     router.post('/loginmedicalstore',(req,res)=>{
         postMedicalstoreitem.loginmedicalstore(req,res);
     });
+    // ==================mediciencard===============
+    router.post('/mediciencard',(req,res)=>{
+        postMedicalstoreitem.addmediciencard(req,res);
+    });
+    router.get('/getmediciencard/:getid',(req,res)=>{
+        postMedicalstoreitem.getAllMediciencard(req,res);
+    });
     module.exports=router;

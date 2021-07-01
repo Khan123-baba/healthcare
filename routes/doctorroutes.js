@@ -78,12 +78,12 @@ router.get('/allhealthtip',(req,res)=>{
 });
 // --------------------medicine----------
 router.post('/medicine',upload.single('medicineimage'),(req,res)=>{
-    postDoctoritem.addmedicine(req,res);
+  postDoctoritem.addmedicine(req,res);
 });
 router.get('/medicine',(req,res)=>{
     getDoctoritem.getMedicine(req,res);
 });
-router.get('/allmedicine',(req,res)=>{
+router.get('/allmedicine/:medicalstoreid',(req,res)=>{
     postDoctoritem.getAllMedicine(req,res);
 });
 // ----------------------change doctor name----------

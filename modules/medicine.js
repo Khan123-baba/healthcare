@@ -5,7 +5,7 @@ const medicine=mongoose.Schema({
     price:{type:String,required:true},
     medicineimage:{type:String,required:true},    
     discription:{type:String,required:true},
-    
+    medicalstoreid:{type:String},
     
     
   
