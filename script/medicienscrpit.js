@@ -1,11 +1,12 @@
 const mongoose=require('mongoose');
 const MedicalStore=require('../modules/medicienshope');
 const Mediciencard=require('../modules/mediciencard');
+const Medicienorder=require('../modules/medicienorder');
 const saltRounds = 10;
 const bcrypt=require('bcryptjs');
 // const path=require('../uploads');
 module.exports={
-    // ----------------Patientregister----------
+    // ----------------MedicalStore----------
     addmedicalstor:async function(req,res){
         if(req.body.Username==undefined||req.body.Username==null){
             return res.status(200).json({
@@ -195,4 +196,65 @@ catch (error) {
 
 }
 },
+// ----------------------Medicienorder------------------
+addmedicienorder:async function(req,res){
+    if(req.body.medicienid==undefined||req.body.medicienid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your medicienid",
+        });
+    }
+    if(req.body.userid==undefined||req.body.userid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your userid",
+        });
+    }
+    if(req.body.medicienstoreid==undefined||req.body.medicienstoreid==null){
+        return res.status(200).json({
+            "Success":false,
+            "message":"please enter your medicienstoreid",
+        });
+    }
+    // if(req.body.getid==undefined||req.body.getid==null){
+    //     return res.status(200).json({
+    //         "Success":false,
+    //         "message":"please enter your getid",
+    //     });
+    // }
+    let medicienorder=Medicienorder();
+    medicienorder._id=mongoose.Types.ObjectId();
+    medicienorder.medicienid=req.body.medicienid;
+    medicienorder.userid=req.body.userid;
+    medicienorder.medicienstoreid=req.body.medicienstoreid;
+    medicienorder.getid=req.body.medicienstoreid;
+   
+    medicienorder.save(async function (err, medicienorder) {
+        if(err){
+             console.log(err);
+        }else{
+            res.status(200).json({
+                "Success":true,
+                "message":" Added Medicien Order",
+
+                'MedicienOrder':medicienorder,
+             });
+            console.log(medicienorder);
+        }
+       });       
+},
+getAllMedicienorder : async function(req,res){
+
+try {
+    let medicienorder=await Medicienorder.find({getid:req.params.getid}).populate('medicienid').populate('userid').populate('medicienstoreid');
+    return res.status(200).json({
+        "Success":true,
+        "MedicienOrder":medicienorder,
+    });
+} 
+catch (error) {
+
+}
+},
+
 }   
