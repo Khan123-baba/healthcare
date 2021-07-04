@@ -221,10 +221,26 @@ addDoctorAppointment:async function(req,res){
                 "message":"please enter your doctorid",
             });
         }
+        if(req.body.days==undefined||req.body.days==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your days",
+            });
+        }
+        if(req.body.TimeSlot==undefined||req.body.TimeSlot==null){
+            return res.status(200).json({
+                "Success":false,
+                "message":"please enter your TimeSlot",
+            });
+        }
         let appointment=Doctorappiontment();
         appointment._id=mongoose.Types.ObjectId();
         appointment.patientid=req.body.patientid;
         appointment.doctorid=req.body.doctorid;
+        appointment.days=req.body.days;
+        appointment.TimeSlot=req.body.TimeSlot;
+
+
         appointment.save(async function (err, appointment) {
             if(err){
                  console.log(err);
@@ -242,7 +258,13 @@ addDoctorAppointment:async function(req,res){
 getAllDoctorappointment : async function(req,res){
     
     try {
-        let appointment=await Doctorappiontment.find().populate('patientid').populate('doctorid');
+        let appointment=await Doctorappiontment.find().populate({
+            path    : 'Doctorappiontment',
+            populate: [
+                { path : 'patientid' },
+                { path : 'doctorid' }
+            ]
+       });;
         return res.status(200).json({
             "Success":true,
             "DoctorAppointment":appointment,
@@ -251,5 +273,29 @@ getAllDoctorappointment : async function(req,res){
  catch (error) {
     
 }
+},
+// =========================getAllDoctorSideAppointment===============
+getAllDoctorSideAppointment: async function(req,res){
+    try {
+        let doctroSideAppointment= await Doctorappiontment.find({doctorid : req.params.doctorid}).populate('patientid');
+        return res.status(200).json({
+            "success":true,
+            "DoctorSideAppoint":doctroSideAppointment,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+},
+// ----------------------------------getAllPatientSideAppointment--------------------
+getAllPatientSideAppointment: async function(req,res){
+    try {
+        let patientSideAppointment= await Doctorappiontment.find({patientid : req.params.patientid}).populate('doctorid');
+        return res.status(200).json({
+            "success":true,
+            "PatientSideAppointment":patientSideAppointment,
+        });
+    } catch (error) {
+        console.log(error);
+    }
 },
 }

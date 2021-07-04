@@ -56,4 +56,12 @@ router.get('/doctorappointment',(req,res)=>{
 router.get('/allDoctorappiontment',(req,res)=>{
     postPatientitem.getAllDoctorappointment(req,res);
 });
+// ------------------------getAllDoctorSideAppointment----------
+router.get('/allDoctorSideAppointment/:doctorid',(req,res)=>{
+    postPatientitem.getAllDoctorSideAppointment(req,res);
+    });
+// -----------------getAllPatientSideAppointment--------------
+router.get('/allPatientSideAppointment/:patientid',(req,res)=>{
+    postPatientitem.getAllPatientSideAppointment(req,res);
+});
 module.exports = router;
