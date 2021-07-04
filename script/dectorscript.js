@@ -260,7 +260,7 @@ logindoctor :async function(req,res){
           if (err) console.log(err);
           //else res.send({ "Success": true, "message": "Verification successfull!" })
         });
-        res.send({ Success: true, user: loginUser });
+        res.send({ Success: true, "Doctor": loginUser });
       } else {
         return res.send({ Success: false, message: "User Not Found" });
       }
