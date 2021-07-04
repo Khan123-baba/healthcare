@@ -191,7 +191,8 @@ module.exports={
         doctorregister.discription=req.body.discription;
         doctorregister.phoneno=req.body.phoneno;
         doctorregister.devicetoken=req.body.devicetoken;
-        doctorregister.doctorimage=req.file.path;
+        var tempPath = req.file.path;
+        doctorregister.doctorimage=tempPath;
 
         
         doctorregister.save(async function (err, doctorregister) {

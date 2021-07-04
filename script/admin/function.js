@@ -19,7 +19,7 @@ module.exports={
     // -----------------DoctorRegister--------
     getDoctorregister : async function(req,res){
         let doctorregister= await DoctorRegister.find({});
-        res.render('doctorRecord',{doctorregister});
+        res.render('doctors',{doctorregister});
         console.log(doctorregister);
     },
     // getdashboard: async function(req,res){
@@ -31,7 +31,7 @@ module.exports={
     // ------------------Patientregister----------
     getPatientregister : async function(req,res){
         let patientregister = await Patientregister.find({});
-        res.render('#',{patientregister});
+        res.render('allpatient',{patientregister});
         console.log(patientregister);
     },
     // --------------------Testlist-----------
@@ -60,7 +60,7 @@ module.exports={
     // ------------------MedicalStore-------------
     getMedicalStore: async function(req,res){
         let medicalstore= await MedicalStore.find({});
-        res.render('#',{medicalstore});
+        res.render('allMedicienStore',{medicalstore});
         console.log(medicalstore);
     },
 // --------------Doctorappiontment---------------

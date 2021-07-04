@@ -45,12 +45,6 @@ router.get('/alldoctorregistration',(req,res)=>{
     postDoctoritem.getAllDoctor(res,res);
 });
 
-router.get('/dashboard',(req,res)=>{
-    getDoctoritem.getdashboard(req,res);
-});
-router.get('/testing',(req,res)=>{
-    res.render('testing');
-});
 
 // ---------------doctor-login------------
 router.post('/doctorlogin',(req,res)=>{

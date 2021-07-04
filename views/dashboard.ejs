@@ -1,3 +1,306 @@
-<h1 class="mt-4">Dashboard</h1>
+<!-- <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome <%= user.name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<a href="/users/logout" class="btn btn-secondary">Logout</a> -->
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico">
+    <title>Health Care</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="#" class="logo">
+					<img src="https://i.pinimg.com/originals/5d/4e/65/5d4e65287c10aaf4256f0f820e8768ca.jpg" width="35" height="35" alt=""> <span>Health Care</span>
+				</a>
+			</div>
+            <ul class="nav user-menu float-right">
+
+
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<!-- <img class="rounded-circle" src="" width="24" alt="Admin"> -->
+							<span class="status online"></span>
+						</span>
+						<span>Admin</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Profile</a>
+						<a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="#">Settings</a>
+						<a class="dropdown-item" href="/users/logout">Logout</a>
+					</div>
+                </li>
+            </ul>
+           
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li class="active">
+                            <a href=""><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						<li>
+                            <a href="/doctorRouter/doctorregister"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+                        </li>
+                        <li>
+                            <a href="patientRouter/patientregister"><i class="fas fa-vials"></i> <span>Patient</span></a>
+                        </li>
+                        <li>
+                            <a href="/medicalstoreRouter/medicalstoreregister"><i class="fas fa-pills"></i> <span>Medicien Stores</span></a>
+                        </li>
+                        <li>
+                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                        </li>
+
+
+                        <li>
+                            <a href="settings.html"><i class="fa fa-cog"></i> <span>Settings</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+							<span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+							<div class="dash-widget-info text-right">
+								<h3>98</h3>
+								<span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
+							</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg2"><i class="fas fa-vials"></i></span>
+                            <div class="dash-widget-info text-right">
+                                <h3>1072</h3>
+                                <span class="widget-title2">Labs <i class="fa fa-check" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg3"><i class="fas fa-pills"></i></span>
+                            <div class="dash-widget-info text-right">
+                                <h3>72</h3>
+                                <span class="widget-title3">Medicien <i class="fa fa-check" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="dash-widget">
+                            <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                            <div class="dash-widget-info text-right">
+                                <h3>618</h3>
+                                <span class="widget-title4">Pending <i class="fa fa-check" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-8 col-xl-8">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="appointments.html" class="btn btn-primary float-right">View all</a>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table mb-0">
+										<thead class="d-none">
+											<tr>
+												<th>Patient Name</th>
+												<th>Doctor Name</th>
+												<th>Timing</th>
+												<th class="text-right">Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td style="min-width: 200px;">
+													<a class="avatar" href="profile.html">B</a>
+													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Appointment With</h5>
+													<p>Dr. Cristina Groves</p>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Timing</h5>
+													<p>7.00 PM</p>
+												</td>
+												<td class="text-right">
+													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+												</td>
+											</tr>
+											<tr>
+												<td style="min-width: 200px;">
+													<a class="avatar" href="profile.html">B</a>
+													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Appointment With</h5>
+													<p>Dr. Cristina Groves</p>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Timing</h5>
+													<p>7.00 PM</p>
+												</td>
+												<td class="text-right">
+													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+												</td>
+											</tr>
+											<tr>
+												<td style="min-width: 200px;">
+													<a class="avatar" href="profile.html">B</a>
+													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Appointment With</h5>
+													<p>Dr. Cristina Groves</p>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Timing</h5>
+													<p>7.00 PM</p>
+												</td>
+												<td class="text-right">
+													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+												</td>
+											</tr>
+											<tr>
+												<td style="min-width: 200px;">
+													<a class="avatar" href="profile.html">B</a>
+													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Appointment With</h5>
+													<p>Dr. Cristina Groves</p>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Timing</h5>
+													<p>7.00 PM</p>
+												</td>
+												<td class="text-right">
+													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+												</td>
+											</tr>
+											<tr>
+												<td style="min-width: 200px;">
+													<a class="avatar" href="profile.html">B</a>
+													<h2><a href="profile.html">Bernardo Galaviz <span>New York, USA</span></a></h2>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Appointment With</h5>
+													<p>Dr. Cristina Groves</p>
+												</td>
+												<td>
+													<h5 class="time-title p-0">Timing</h5>
+													<p>7.00 PM</p>
+												</td>
+												<td class="text-right">
+													<a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-8 col-xl-8">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title d-inline-block">New Patients </h4> <a href="patients.html" class="btn btn-primary float-right">View all</a>
+							</div>
+							<div class="card-block">
+								<div class="table-responsive">
+									<table class="table mb-0 new-patient-table">
+										<tbody>
+											<tr>
+												<td>
+													<img width="28" height="28" class="rounded-circle" src="./assets/img/user.jpg" alt="">
+													<h2>John Doe</h2>
+												</td>
+												<td>Johndoe21@gmail.com</td>
+												<td>+1-202-555-0125</td>
+												<td><button class="btn btn-primary btn-primary-one float-right">Fever</button></td>
+											</tr>
+											<tr>
+												<td>
+													<img width="28" height="28" class="rounded-circle" src="./assets/img/user.jpg" alt="">
+													<h2>Richard</h2>
+												</td>
+												<td>Richard123@yahoo.com</td>
+												<td>202-555-0127</td>
+												<td><button class="btn btn-primary btn-primary-two float-right">Cancer</button></td>
+											</tr>
+											<tr>
+												<td>
+													<img width="28" height="28" class="rounded-circle" src="./assets/img/user.jpg" alt="">
+													<h2>Villiam</h2>
+												</td>
+												<td>Richard123@yahoo.com</td>
+												<td>+1-202-555-0106</td>
+												<td><button class="btn btn-primary btn-primary-three float-right">Eye</button></td>
+											</tr>
+											<tr>
+												<td>
+													<img width="28" height="28" class="rounded-circle" src="./assets/img/user.jpg" alt="">
+													<h2>Martin</h2>
+												</td>
+												<td>Richard123@yahoo.com</td>
+												<td>776-2323 89562015</td>
+												<td><button class="btn btn-primary btn-primary-four float-right">Fever</button></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+	<script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/Chart.bundle.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+
+
+</html>
