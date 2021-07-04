@@ -15,15 +15,18 @@ const storage=multer.diskStorage({
     }
 });
 const fileFilter=(req,file,cb)=>{
-    // if(file.mimetype==="image/jpeg"||file.mimetype==="image/png"){
-    //     cb(null,true);
-    // }else{
-    //     cb("file must be jpeg or png",false);
-    // }
+    if(file.mimetype==="image/jpeg"||file.mimetype==="image/png"){
+        cb(null,true);
+    }else{
+        cb("file must be jpeg or png",false);
+    }
     };
     const upload =multer({storage:storage,limits:{
         fileSize:1024*1024*5,
-    }, fileFilter:fileFilter});
+    },
+    //  fileFilter:fileFilter
+    }
+     );
 // -------------DoctorSpecility---------
 router.post('/doctorSpecility',(req,res)=>{
 postDoctoritem.addDoctorSpecility(req,res);
